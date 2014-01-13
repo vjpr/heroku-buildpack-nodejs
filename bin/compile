@@ -17,7 +17,7 @@ source $bp_dir/bin/common.sh
 # Output npm debug info on error
 trap cat_npm_debug_log ERR
 
-cat << EOF
+cat <<EOF
  __   ___  __   __   ___  __       ___  ___  __
 |  \ |__  |__) |__) |__  /  `  /\   |  |__  |  \
 |__/ |___ |    |  \ |___ \__, /~~\  |  |___ |__/
