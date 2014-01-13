@@ -19,7 +19,7 @@ trap cat_npm_debug_log ERR
 
 cat <<EOF
  __   ___  __   __   ___  __       ___  ___  __
-|  \ |__  |__) |__) |__  /  `  /\   |  |__  |  \
+|  \ |__  |__) |__) |__  /  \  /\   |  |__  |  \
 |__/ |___ |    |  \ |___ \__, /~~\  |  |___ |__/
 
 Thanks for helping us test the diet branch, but it's now deprecated. Please use the default buildpack:
