@@ -93,7 +93,7 @@ rm -rf "$build_dir/.npm"
 # Bower.
 if [ -f $build_dir/bower.json ]; then
   # Make sure that bower is installed locally.
-  run_npm "install bower"
+  npm install bower
   echo "-----> Found bower.json, running bower install"
   $build_dir/node_modules/.bin/bower install --config.storage.cache=$cache_dir/bower
 else
