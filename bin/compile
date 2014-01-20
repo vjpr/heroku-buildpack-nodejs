@@ -92,12 +92,12 @@ rm -rf "$build_dir/.npm"
 
 # Bower.
 if [ -f $build_dir/bower.json ]; then
-  # make sure that bower is installed locally
+  # Make sure that bower is installed locally.
   run_npm "install bower"
   echo "-----> Found bower.json, running bower install"
   $build_dir/node_modules/.bin/bower install --config.storage.cache=$cache_dir/bower
 else
-  echo "-----> No Bower.json found"
+  echo "-----> No bower.json found"
 fi
 
 # If Procfile is absent, try to create one using `npm start`
