@@ -97,7 +97,8 @@ rm -rf "$build_dir/.npm"
 # Bower.
 if [ -f $build_dir/bower.json ]; then
   # Make sure that bower is installed locally.
-  npm install bower
+  # This is disabled because when using shrink wrapped it always re-installs.
+  #npm install bower
   echo "-----> Found bower.json, running bower install"
   $build_dir/node_modules/.bin/bower install --config.storage.packages=$cache_dir/bower
 else
