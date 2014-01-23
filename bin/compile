@@ -99,8 +99,6 @@ rm -rf "$build_dir/.npm"
 if [ -f $build_dir/bower.json ]; then
   echo "-----> Found bower.json"
 
-  ls -al $cache_dir
-
   if test -d $cache_dir/bower_components; then
     status "Restoring components directory from cache"
     cp -r $cache_dir/bower_components $build_dir/assets/shared/components
@@ -110,7 +108,7 @@ if [ -f $build_dir/bower.json ]; then
   # NOTE: This is disabled because when using shrink wrapped it always re-installs.
   #npm install bower
   echo "-----> Running bower install"
-  $build_dir/node_modules/.bin/bower install --config.storage.packages=$cache_dir/bower
+  $build_dir/node_modules/.bin/bower install --config.storage.packages=$cache_dir/bower_cache
 
   status "Caching components directory for future builds"
   rm -rf $cache_dir/bower_components
