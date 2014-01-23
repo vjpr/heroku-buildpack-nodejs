@@ -113,7 +113,7 @@ if [ -f $build_dir/bower.json ]; then
   status "Caching components directory for future builds"
   rm -rf $cache_dir/bower_components
   mkdir -p $cache_dir
-  test -d $build_dir/bower_components && cp -r $build_dir/bower_components $cache_dir/
+  test -d $build_dir/assets/shared/components && cp -r $build_dir/assets/shared/components/. $cache_dir/bower_components
 
 else
 
