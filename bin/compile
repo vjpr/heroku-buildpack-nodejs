@@ -95,6 +95,7 @@ rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
 # Bower.
+# TODO: Read `components` dir from `bower.json` and copy/save from/to cache.
 if [ -f $build_dir/bower.json ]; then
   # Make sure that bower is installed locally.
   # This is disabled because when using shrink wrapped it always re-installs.
