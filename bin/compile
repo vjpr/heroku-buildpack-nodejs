@@ -95,9 +95,11 @@ rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
 # Bower.
-# TODO: Read `components` dir from `bower.json` and copy/save from/to cache.
+# TODO: Read `components` dir from `.bowerrc`.
 if [ -f $build_dir/bower.json ]; then
   echo "-----> Found bower.json"
+
+  ls -al $cache_dir
 
   if test -d $cache_dir/bower_components; then
     status "Restoring components directory from cache"
