@@ -97,13 +97,28 @@ rm -rf "$build_dir/.npm"
 # Bower.
 # TODO: Read `components` dir from `bower.json` and copy/save from/to cache.
 if [ -f $build_dir/bower.json ]; then
+  echo "-----> Found bower.json"
+
+  if test -d $cache_dir/bower_components; then
+    status "Restoring components directory from cache"
+    cp -r $cache_dir/bower_components $build_dir/assets/shared/components
+  fi
+
   # Make sure that bower is installed locally.
-  # This is disabled because when using shrink wrapped it always re-installs.
+  # NOTE: This is disabled because when using shrink wrapped it always re-installs.
   #npm install bower
-  echo "-----> Found bower.json, running bower install"
+  echo "-----> Running bower install"
   $build_dir/node_modules/.bin/bower install --config.storage.packages=$cache_dir/bower
+
+  status "Caching components directory for future builds"
+  rm -rf $cache_dir/bower_components
+  mkdir -p $cache_dir
+  test -d $build_dir/bower_components && cp -r $build_dir/bower_components $cache_dir/
+
 else
+
   echo "-----> No bower.json found"
+
 fi
 
 # If Procfile is absent, try to create one using `npm start`
