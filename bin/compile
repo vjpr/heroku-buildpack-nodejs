@@ -99,6 +99,11 @@ rm -rf "$build_dir/.npm"
 if [ -f $build_dir/bower.json ]; then
   echo "-----> Found bower.json"
 
+  # TODO: If bower version changes we always want to clear the components cache.
+  # TODO: I don't have time to work out how right now.
+  status "[TEMPORARY] Clearing components cache directory"
+  rm -rf $cache_dir/bower_components
+
   if test -d $cache_dir/bower_components; then
     status "Restoring components directory from cache"
     cp -r $cache_dir/bower_components $build_dir/assets/shared/components
