@@ -101,19 +101,24 @@ if [ -f $build_dir/bower.json ]; then
 
   # TODO: If bower version changes we always want to clear the components cache.
   # TODO: I don't have time to work out how right now.
+  # TODO: Not actually sure this needs to be run, maybe only `bower cache clean` does.
   if test -d $cache_dir/bower_components; then
     status "[TEMPORARY] Clearing components cache directory"
     rm -rf $cache_dir/bower_components
   fi
-  # ---
+  # TODO: ---
 
   if test -d $cache_dir/bower_components; then
     status "Restoring components directory from cache"
     cp -r $cache_dir/bower_components $build_dir/assets/shared/components
   fi
 
-  echo "-----> Running bower cache clean"
-  $build_dir/node_modules/.bin/bower cache clean
+  # TODO: Must be run after bower version changes.
+  echo "-----> [TEMPORARY] Running bower cache clean"
+  rm -rf $cache_dir/bower_cache
+  # TODO: The above may not be needed if this line works. Didn't have time to check.
+  $build_dir/node_modules/.bin/bower cache clean --config.storage.packages=$cache_dir/bower_cache
+  # TODO: ---
 
   # Make sure that bower is installed locally.
   # NOTE: This is disabled because when using shrink wrapped it always re-installs.
