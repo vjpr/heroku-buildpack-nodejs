@@ -101,8 +101,11 @@ if [ -f $build_dir/bower.json ]; then
 
   # TODO: If bower version changes we always want to clear the components cache.
   # TODO: I don't have time to work out how right now.
-  status "[TEMPORARY] Clearing components cache directory"
-  rm -rf $cache_dir/bower_components
+  if test -d $cache_dir/bower_components; then
+    status "[TEMPORARY] Clearing components cache directory"
+    rm -rf $cache_dir/bower_components
+  fi
+  # ---
 
   if test -d $cache_dir/bower_components; then
     status "Restoring components directory from cache"
