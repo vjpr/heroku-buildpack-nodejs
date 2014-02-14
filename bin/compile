@@ -112,6 +112,9 @@ if [ -f $build_dir/bower.json ]; then
     cp -r $cache_dir/bower_components $build_dir/assets/shared/components
   fi
 
+  echo "-----> Running bower cache clean"
+  $build_dir/node_modules/.bin/bower cache clean
+
   # Make sure that bower is installed locally.
   # NOTE: This is disabled because when using shrink wrapped it always re-installs.
   #npm install bower
