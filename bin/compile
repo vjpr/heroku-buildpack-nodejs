@@ -94,7 +94,10 @@ status "Cleaning up node-gyp and npm artifacts"
 rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
-# Bower.
+#
+# Bower
+#
+
 # TODO: Read `components` dir from `.bowerrc`.
 if [ -f $build_dir/bower.json ]; then
   status "Found bower.json"
@@ -109,6 +112,7 @@ if [ -f $build_dir/bower.json ]; then
   #fi
   # TODO: ---
 
+  # We restore `bower_components` because it is faster than using Bower's caching mechanism.
   if test -d $cache_dir/bower_components; then
     status "Restoring components directory from cache"
     cp -r $cache_dir/bower_components $build_dir/assets/shared/components
@@ -124,6 +128,7 @@ if [ -f $build_dir/bower.json ]; then
   # Make sure that bower is installed locally.
   # NOTE: This is disabled because when using shrink wrapped it always re-installs.
   #npm install bower
+
   echo "-----> Running bower install"
   $build_dir/node_modules/.bin/bower install --config.storage.packages=$cache_dir/bower_cache
 
