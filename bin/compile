@@ -9,6 +9,8 @@ build_dir=$1
 cache_dir=$2
 env_file=$3
 
+status "Using cache dir: $cache_dir"
+
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
 
 # Load some convenience functions like status(), echo(), and indent()
