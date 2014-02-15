@@ -9,8 +9,6 @@ build_dir=$1
 cache_dir=$2
 env_file=$3
 
-status "Using cache dir: $cache_dir"
-
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
 
 # Load some convenience functions like status(), echo(), and indent()
@@ -99,7 +97,9 @@ rm -rf "$build_dir/.npm"
 # Bower.
 # TODO: Read `components` dir from `.bowerrc`.
 if [ -f $build_dir/bower.json ]; then
-  echo "-----> Found bower.json"
+  status "Found bower.json"
+  status "Using cache dir: $cache_dir"
+
 
   # TODO: If bower version changes we always want to clear the components cache.
   # TODO: I don't have time to work out how right now.
@@ -116,7 +116,7 @@ if [ -f $build_dir/bower.json ]; then
   fi
 
   # TODO: Must be run after bower version changes.
-  echo "-----> [TEMPORARY] Running bower cache clean"
+  status "[TEMPORARY] Running bower cache clean"
   rm -rf $cache_dir/bower_cache
   # TODO: The above may not be needed if this line works. Didn't have time to check.
   $build_dir/node_modules/.bin/bower cache clean --config.storage.packages=$cache_dir/bower_cache
