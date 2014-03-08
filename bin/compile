@@ -119,8 +119,8 @@ if [ -f $build_dir/bower.json ]; then
   fi
 
   # TODO: Must be run after bower version changes.
-  #status "[TEMPORARY] Running bower cache clean"
-  #rm -rf $cache_dir/bower_cache
+  status "[TEMPORARY] Running bower cache clean"
+  rm -rf $cache_dir/bower_cache
   # TODO: The above may not be needed if this line works. Didn't have time to check.
   $build_dir/node_modules/.bin/bower cache clean --config.storage.packages=$cache_dir/bower_cache
   # TODO: ---
