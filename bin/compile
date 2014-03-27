@@ -106,10 +106,10 @@ if [ -f $build_dir/bower.json ]; then
   # TODO: If bower version changes we always want to clear the components cache.
   # TODO: I don't have time to work out how right now.
   # TODO: Not actually sure this needs to be run, maybe only `bower cache clean` does.
-  #if test -d $cache_dir/bower_components; then
-  #  status "[TEMPORARY] Clearing components cache directory"
-  #  rm -rf $cache_dir/bower_components
-  #fi
+  if test -d $cache_dir/bower_components; then
+    status "[TEMPORARY] Clearing components cache directory"
+    rm -rf $cache_dir/bower_components
+  fi
   # TODO: ---
 
   # We restore `bower_components` because it is faster than using Bower's caching mechanism.
