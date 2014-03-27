@@ -120,14 +120,14 @@ if [ -f $build_dir/bower.json ]; then
 
   # TODO: Must be run after bower version changes.
   status "[TEMPORARY] Running bower cache clean"
-  #rm -rf $cache_dir/bower_cache
+  rm -rf $cache_dir/bower_cache
   # TODO: The above may not be needed if this line works. Didn't have time to check.
-  #$build_dir/node_modules/.bin/bower cache clean --config.storage.packages=$cache_dir/bower_cache
+  $build_dir/node_modules/.bin/bower cache clean --config.storage.packages=$cache_dir/bower_cache
   # TODO: ---
 
   # Make sure that bower is installed locally.
   # NOTE: This is disabled because when using shrink wrapped it always re-installs.
-  #npm ˚install bower
+  #npm install bower
 
   echo "-----> Running bower install"
   $build_dir/node_modules/.bin/bower install --config.storage.packages=$cache_dir/bower_cache
