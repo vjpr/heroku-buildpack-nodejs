@@ -130,7 +130,8 @@ if [ -f $build_dir/bower.json ]; then
   #npm install bower
 
   echo "-----> Running bower install"
-  $build_dir/node_modules/.bin/bower install --config.storage.packages=$cache_dir/bower_cache
+  #$build_dir/node_modules/.bin/bower install --config.storage.packages=$cache_dir/bower_cache
+  $build_dir/node_modules/.bin/bower install
 
   status "Caching components directory for future builds"
   rm -rf $cache_dir/bower_components
