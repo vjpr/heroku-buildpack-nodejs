@@ -113,10 +113,10 @@ if [ -f $build_dir/bower.json ]; then
   # TODO: ---
 
   # We restore `bower_components` because it is faster than using Bower's caching mechanism.
-  if test -d $cache_dir/bower_components; then
-    status "Restoring components directory from cache"
-    cp -r $cache_dir/bower_components $build_dir/assets/shared/components
-  fi
+  #if test -d $cache_dir/bower_components; then
+  #  status "Restoring components directory from cache"
+  #  cp -r $cache_dir/bower_components $build_dir/assets/shared/components
+  #fi
 
   # TODO: Must be run after bower version changes.
   status "[TEMPORARY] Running bower cache clean"
