@@ -4,6 +4,9 @@ set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
 # set -x          # enable debugging
 
+# Config flags
+CLEAR_BOWER_CACHE=0
+
 # Configure directories
 build_dir=$1
 cache_dir=$2
@@ -107,8 +110,10 @@ if [ -f $build_dir/bower.json ]; then
   # TODO: I don't have time to work out how right now.
   # TODO: Not actually sure this needs to be run, maybe only `bower cache clean` does.
   if test -d $cache_dir/bower_components; then
-    status "[TEMPORARY] Clearing components cache directory"
-    rm -rf $cache_dir/bower_components
+    if [ $CLEAR_BOWER_CACHE = 1 ]; then
+      status "[TEMPORARY] Clearing components cache directory"
+      rm -rf $cache_dir/bower_components
+    fi
   fi
   # TODO: ---
 
@@ -118,12 +123,14 @@ if [ -f $build_dir/bower.json ]; then
   #  cp -r $cache_dir/bower_components $build_dir/assets/shared/components
   #fi
 
-  # TODO: Must be run after bower version changes.
-  status "[TEMPORARY] Running bower cache clean"
-  rm -rf $cache_dir/bower_cache
-  # TODO: The above may not be needed if this line works. Didn't have time to check.
-  $build_dir/node_modules/.bin/bower cache clean --config.storage.packages=$cache_dir/bower_cache
-  # TODO: ---
+  if [ $CLEAR_BOWER_CACHE = 1 ]; then
+    # TODO: Must be run after bower version changes.
+    status "[TEMPORARY] Running bower cache clean"
+    rm -rf $cache_dir/bower_cache
+    # TODO: The above may not be needed if this line works. Didn't have time to check.
+    $build_dir/node_modules/.bin/bower cache clean --config.storage.packages=$cache_dir/bower_cache
+    # TODO: ---
+  fi
 
   # Make sure that bower is installed locally.
   # NOTE: This is disabled because when using shrink wrapped it always re-installs.
